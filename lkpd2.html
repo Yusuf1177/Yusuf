@@ -88,4 +88,145 @@ console.log(a / b);
 console.log(a % b);</pre>
   <div class="wrap"><table>
     <tr><th>a + b</th><th>a - b</th><th>a * b</th><th>a / b</th><th>a % b</th></tr>
-    <tr><td>24</td><td>16</td><td>80</td><td>5</
+    <tr><td>24</td><td>16</td><td>80</td><td>5</td><td>0</td></tr>
+  </table></div>
+  <div class="ans"><b>Apa yang kamu temukan?</b> Operator % menghasilkan sisa pembagian. Karena 20 habis dibagi 4, sisanya 0.</div>
+</section>
+
+<section id="a3">
+  <h2><span>3.</span> Input dengan prompt()</h2>
+  <pre>let nama = prompt("Masukkan nama:");
+console.log(nama);
+let umur = prompt("Masukkan umur:");
+console.log(umur);</pre>
+  <div class="ans"><b>Fungsi prompt():</b> menampilkan kotak dialog untuk meminta pengguna mengetik data. Data yang diketik disimpan ke dalam variable (berupa teks/string) dan bisa dipakai di program.</div>
+</section>
+
+<section id="a4">
+  <h2><span>4.</span> Menghitung Umur</h2>
+  <pre>let tahunLahir = prompt("Masukkan tahun lahir:");
+let tahunSekarang = 2026;
+let umur = tahunSekarang - tahunLahir;
+console.log(umur);</pre>
+  <div class="ans"><b>Contoh:</b> tahun lahir 2009, maka umur = 2026 - 2009 = <b>17</b> tahun. (Isi dengan tahun lahirmu sendiri di kalkulator bawah.)</div>
+  <div class="demo">
+    <h4>Coba sendiri</h4>
+    <div class="row"><input id="tl" type="number" placeholder="Tahun lahir" value="2009"><button onclick="hitungUmur()">Hitung</button></div>
+    <div class="out" id="outUmur"></div>
+  </div>
+</section>
+
+<section id="a5">
+  <h2><span>5.</span> Mesin Kasir Mini</h2>
+  <pre>let harga = prompt("Masukkan harga:");
+let jumlah = prompt("Masukkan jumlah:");
+let total = harga * jumlah;
+console.log(total);</pre>
+  <div class="ans"><b>Uji:</b> Harga = 5000, Jumlah = 4. Total = <b>Rp 20.000</b></div>
+  <div class="demo">
+    <h4>Mesin kasir</h4>
+    <div class="row"><input id="h5" type="number" placeholder="Harga" value="5000"><input id="j5" type="number" placeholder="Jumlah" value="4"><button onclick="kasir()">Hitung</button></div>
+    <div class="out" id="out5"></div>
+  </div>
+</section>
+
+<section id="a6">
+  <h2><span>6.</span> Think Pair Share</h2>
+  <div class="ans"><b>THINK:</b> Variable total dibutuhkan untuk menyimpan hasil perhitungan (harga × jumlah) supaya bisa ditampilkan atau dipakai lagi tanpa menghitung ulang, dan kode jadi lebih mudah dibaca.</div>
+  <div class="ans"><b>PAIR:</b> Jawaban sama? Ya.</div>
+  <div class="ans"><b>SHARE (kesimpulan kelompok):</b> Variable adalah tempat menyimpan data atau hasil proses, sehingga program mengikuti alur Input → Process → Output dengan rapi.</div>
+</section>
+
+<section id="a7">
+  <h2><span>7.</span> Challenge: Warung Digital</h2>
+  <pre>let makanan = prompt("Nama makanan:");
+let harga = prompt("Harga:");
+let jumlah = prompt("Jumlah:");
+let total = harga * jumlah;
+console.log(makanan);
+console.log(harga);
+console.log(jumlah);
+console.log(total);
+
+// Pengembangan: diskon 10%
+let diskon = total * 10 / 100;
+let bayar = total - diskon;
+console.log("Total:", total);
+console.log("Diskon:", diskon);
+console.log("Total Bayar:", bayar);</pre>
+  <div class="ans"><b>Contoh hasil:</b> Nasi Goreng, harga 15000, jumlah 2 → Total 30000, Diskon 3000, Total Bayar <b>27000</b>.</div>
+  <div class="demo">
+    <h4>Warung Digital</h4>
+    <div class="row"><input id="m7" placeholder="Nama makanan" value="Nasi Goreng"><input id="h7" type="number" placeholder="Harga" value="15000"><input id="j7" type="number" placeholder="Jumlah" value="2"><button onclick="warung()">Hitung</button></div>
+    <div class="out" id="out7"></div>
+  </div>
+</section>
+
+<section id="a8">
+  <h2><span>8.</span> Debugging</h2>
+  <pre>let harga = 5000;
+let jumlah = 3;
+let total harga = harga * jumlah;
+console.log(total harga);</pre>
+  <div class="ans bad"><b>Kesalahan:</b> Nama variable "total harga" memakai spasi. Nama variable tidak boleh mengandung spasi sehingga terjadi SyntaxError.</div>
+  <div class="ans"><b>Perbaikan kode:</b></div>
+  <pre>let harga = 5000;
+let jumlah = 3;
+let totalHarga = harga * jumlah;
+console.log(totalHarga); // 15000</pre>
+</section>
+
+<section id="a9">
+  <h2><span>9.</span> Kalkulator Tabungan</h2>
+  <pre>let uangAwal = Number(prompt("Uang awal:"));
+let hari1 = Number(prompt("Tabungan hari pertama:"));
+let hari2 = Number(prompt("Tabungan hari kedua:"));
+let hari3 = Number(prompt("Tabungan hari ketiga:"));
+let total = uangAwal + hari1 + hari2 + hari3;
+console.log("Total tabungan = Rp", total);</pre>
+  <div class="ans"><b>Contoh:</b> 50000 + 5000 + 7000 + 6000 → Total tabungan = <b>Rp 68.000</b>. Number() dipakai agar nilai dijumlahkan sebagai angka, bukan digabung sebagai teks.</div>
+  <div class="demo">
+    <h4>Kalkulator tabungan</h4>
+    <div class="row"><input id="t0" type="number" placeholder="Uang awal" value="50000"><input id="t1" type="number" placeholder="Hari 1" value="5000"><input id="t2" type="number" placeholder="Hari 2" value="7000"><input id="t3" type="number" placeholder="Hari 3" value="6000"><button onclick="tabung()">Hitung</button></div>
+    <div class="out" id="out9"></div>
+  </div>
+</section>
+
+<section id="asesmen">
+  <h2>Asesmen Formatif</h2>
+  <div class="ans"><b>1.</b> let a = 8; let b = 2; console.log(a + b); → <b>10</b></div>
+  <div class="ans"><b>2.</b> let a = 10; let b = 3; console.log(a % b); → <b>1</b> (10 dibagi 3 = 3 sisa 1)</div>
+  <div class="ans"><b>3.</b> Fungsi prompt(): meminta pengguna memasukkan data lewat kotak dialog dan menyimpannya ke variable.</div>
+  <div class="ans"><b>4.</b> Luas persegi panjang:</div>
+  <pre>let panjang = 10;
+let lebar = 5;
+let luas = panjang * lebar;
+console.log(luas); // 50</pre>
+</section>
+</main>
+
+<footer>Dikerjakan oleh <b>Najril</b> • PPLG2 • SMKN 1 Garut</footer>
+
+<script>
+function rp(n){return "Rp "+Number(n).toLocaleString("id-ID")}
+function hitungUmur(){
+  var t=Number(document.getElementById("tl").value);
+  document.getElementById("outUmur").textContent=t?"Umur = "+(2026-t)+" tahun":"Isi tahun lahir dulu.";
+}
+function kasir(){
+  var h=Number(document.getElementById("h5").value),j=Number(document.getElementById("j5").value);
+  document.getElementById("out5").textContent="Total = "+rp(h*j);
+}
+function warung(){
+  var m=document.getElementById("m7").value,h=Number(document.getElementById("h7").value),j=Number(document.getElementById("j7").value);
+  var total=h*j,diskon=total*10/100,bayar=total-diskon;
+  document.getElementById("out7").textContent="Makanan: "+m+"\nHarga: "+rp(h)+"\nJumlah: "+j+"\nTotal: "+rp(total)+"\nDiskon 10%: "+rp(diskon)+"\nTotal Bayar: "+rp(bayar);
+}
+function tabung(){
+  var s=0;["t0","t1","t2","t3"].forEach(function(id){s+=Number(document.getElementById(id).value)});
+  document.getElementById("out9").textContent="Total tabungan = "+rp(s);
+}
+hitungUmur();kasir();warung();tabung();
+</script>
+</body>
+    </html>
