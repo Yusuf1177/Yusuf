@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LKPD JavaScript — Najril</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f2ff;--card:#fff;--ink:#202044;--mute:#696985;--line:#e6e2f4;--acc:#6d4aff;--acc2:#f0ecff;--ok:#087f5b;--okbg:#e2f7ef;--code:#17172d;--codet:#f0efff;--js:#ffd166;box-sizing:border-box}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 10% 0%,#e5ddff 0,transparent 38%),var(--bg);color:var(--ink);font:400 16px/1.7 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:920px;margin:0 auto;padding:28px 20px 72px}
+header{position:relative;overflow:hidden;padding:42px 34px 30px;background:linear-gradient(135deg,#29204f,#5540a8 62%,#765cff);color:#fff;border-radius:28px;box-shadow:0 18px 45px #38247724}
+header:after{content:"JS";position:absolute;right:26px;top:8px;font-size:clamp(6rem,18vw,11rem);font-weight:900;line-height:1;color:#ffffff12;pointer-events:none}
+h1{position:relative;z-index:1;font-size:clamp(2.15rem,6vw,3.7rem);line-height:1.04;margin:0 0 14px;font-weight:850;letter-spacing:-.045em}
+h1 span{display:inline-block;background:var(--js);color:#282044;padding:.06em .2em;border-radius:9px}
+.sub{position:relative;z-index:1;color:#e5e0ff;margin:0 0 25px;max-width:62ch}
+.id{position:relative;z-index:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:#ffffff30;border:1px solid #ffffff35;border-radius:16px;overflow:hidden}
+.id div{background:#ffffff12;padding:12px 16px;backdrop-filter:blur(8px)}
+.id small{display:block;color:#d5ceff;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}
+.id b{font-size:1rem;color:white}
+.id input{font:inherit;font-weight:600;color:white;background:transparent;border:0;border-bottom:1px dashed #ffffff70;width:100%;padding:0}
+.id input::placeholder{color:#d5ceff}
+section{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;margin-top:20px;box-shadow:0 8px 26px #30205b0a}
+h2{font-size:1.3rem;margin:0 0 12px;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+h2 i{font-style:normal;display:inline-grid;place-items:center;flex:0 0 34px;height:34px;border-radius:11px;background:var(--acc);color:#fff;font-size:.9rem}
+h3{font-size:1rem;margin:20px 0 7px;color:#4e3a9c}
+p{margin:8px 0}
+.note{color:var(--mute);font-size:.94rem}
+pre{background:var(--code);color:var(--codet);border-radius:14px;padding:17px 19px;overflow-x:auto;font:400 .88rem/1.75 "JetBrains Mono",ui-monospace,monospace;margin:14px 0}
+pre .k{color:#b8a5ff}pre .s{color:#9ce6bd}pre .n{color:#ffd08a}pre .c{color:#9da2c5}
+code{font-family:"JetBrains Mono",ui-monospace,monospace;background:var(--acc2);color:#6241df;padding:2px 6px;border-radius:6px;font-size:.88em}
+.qa{border-left:4px solid var(--acc);background:var(--acc2);border-radius:0 12px 12px 0;padding:11px 15px;margin:11px 0}
+.qa .q{font-weight:700;font-size:.95rem;color:#35266e}
+.qa .a{color:var(--ok);background:var(--okbg);display:inline-block;border-radius:8px;padding:4px 10px;margin-top:5px}
+.qa p.a{display:block}
+.tw{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.92rem}
+th,td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:#eeeaff;color:#40317e;font-weight:750}
+tr:last-child td{border-bottom:0}
+td.ok{color:var(--ok);font-weight:700}
+.run{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:14px 0}
+.run label{font-size:.84rem;color:var(--mute);display:flex;flex-direction:column;gap:5px;font-weight:650}
+.run input{font:inherit;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:#faf9ff;color:var(--ink);width:140px}
+button{font:600 .94rem inherit;font-family:inherit;background:var(--acc);color:#fff;border:0;border-radius:11px;padding:10px 17px;cursor:pointer;box-shadow:0 5px 12px #6d4aff30;transition:transform .15s,background .15s}
+button:hover{background:#5534d8;transform:translateY(-1px)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--js);outline-offset:3px}
+.out{background:var(--code);color:#9ce6bd;border-radius:11px;padding:12px 15px;font:400 .9rem "JetBrains Mono",monospace;min-height:2.8rem;margin-top:9px;white-space:pre-wrap}
+ol.al{padding-left:22px}
+.chk{color:var(--ok);font-weight:850}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.grid2>div{background:#faf9ff;border:1px solid var(--line);border-radius:13px;padding:12px 15px}
+footer{text-align:center;color:var(--mute);font-size:.88rem;margin-top:30px;padding:18px}
+@media(max-width:600px){main{padding:14px 12px 48px}header{padding:30px 20px 22px;border-radius:20px}section{padding:19px 16px;border-radius:16px}h2{font-size:1.16rem}}
+@media print{body{background:#fff}header{background:#fff;color:#202044;border:1px solid #ddd;box-shadow:none}header .sub,header .id small,header .id b{color:#333}header:after{display:none}.id div{background:#fff}.run,button{display:none}section{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>LKPD <span>JavaScript</span><br>String, Number &amp; Konversi Data</h1>
+<p class="sub">Lembar kerja peserta didik yang sudah terisi, lengkap dengan contoh program yang bisa langsung dijalankan di halaman ini.</p>
+<div class="id">
+<div><small>Nama</small><b>Najril</b></div>
+<div><small>Kelas / No. Absen</small><input aria-label="Kelas dan nomor absen" placeholder="Isi kelas / no. absen"></div>
+<div><small>Tanggal</small><b>13 November 2026</b></div>
+<div><small>Satuan Pendidikan</small><b>SMKN 1 Garut</b></div>
+<div><small>Mata Pelajaran</small><b>Dasar-Dasar Pengembangan Perangkat Lunak dan Gim</b></div>
+<div><small>Kelas / Alokasi Waktu</small><b>X / Fase E · 2 × 45 menit</b></div>
+</div>
+</header>
+
+<section>
+<h2>A. Tujuan pembelajaran</h2>
+<ol>
+<li>Membedakan String dan Number.</li>
+<li>Menjelaskan bahwa <code>prompt()</code> menghasilkan String.</li>
+<li>Menggunakan <code>Number()</code> dan <code>String()</code>.</li>
+<li>Menganalisis kesalahan akibat tipe data.</li>
+<li>Membuat program input dan perhitungan sederhana.</li>
+</ol>
+<h3>B. Petunjuk kerja</h3>
+<p class="note">Kerjakan mandiri dulu, prediksi hasil sebelum menjalankan kode, jalankan dan amati, diskusikan lewat Think Pair Share, lalu simpan file sebagai <code>lkpd_string_number_najril.js</code>.</p>
+</section>
+
+<section>
+<h2><i>1</i>Eksperimen 10 + 20</h2>
+<pre><span class="k">let</span> a = <span class="s">"10"</span>;
+<span class="k">let</span> b = <span class="s">"20"</span>;
+console.log(a + b);</pre>
+<div class="qa"><div class="q">Apa output program?</div><span class="a">1020</span></div>
+<div class="qa"><div class="q">Mengapa hasil tersebut terjadi?</div><p class="a">Karena a dan b berisi teks (String), tanda + menggabungkan teks, bukan menjumlahkan angka.</p></div>
+<div class="qa"><div class="q">Apakah a dan b bertipe Number?</div><span class="a">Bukan, keduanya bertipe String karena ditulis dalam tanda kutip.</span></div>
+<div class="qa"><div class="q">Uji sekarang. Apakah prediksimu benar?</div><p class="a">Benar. Setelah dijalankan, hasilnya 1020, bukan 30.</p></div>
+<div class="run"><button id="r1">Jalankan kode</button></div>
+<div class="out" id="o1" aria-live="polite">Tekan “Jalankan kode”.</div>
+</section>
+
+<section>
+<h2><i>2</i>Menemukan tipe data</h2>
+<pre><span class="k">let</span> nama = <span class="s">"Asep"</span>;
+<span class="k">let</span> umur = <span class="n">16</span>;
+console.log(<span class="k">typeof</span> nama);
+console.log(<span class="k">typeof</span> umur);</pre>
+<div class="tw"><table>
+<tr><th>Variabel</th><th>Prediksi</th><th>Hasil typeof</th><th>Kesimpulan</th></tr>
+<tr><td>nama</td><td>string</td><td class="ok">string</td><td>Teks dalam tanda kutip adalah String</td></tr>
+<tr><td>umur</td><td>number</td><td class="ok">number</td><td>Angka tanpa kutip adalah Number</td></tr>
+</table></div>
+<div class="qa"><div class="q">Temuan: apa perbedaan String dan Number?</div><p class="a">String adalah data teks yang ditulis dengan tanda kutip dan tidak bisa dihitung secara matematis. Number adalah angka tanpa kutip yang bisa dijumlah, dikurang, dikali, dan dibagi.</p></div>
+<div class="run"><button id="r2">Jalankan kode</button></div>
+<div class="out" id="o2" aria-live="polite">Tekan “Jalankan kode”.</div>
+</section>
+
+<section>
+<h2><i>3</i>Konversi String menjadi Number</h2>
+<pre><span class="k">let</span> a = <span class="s">"10"</span>;
+<span class="k">let</span> b = <span class="s">"20"</span>;
+<span class="k">let</span> hasil = Number(a) + Number(b);
+console.log(hasil);</pre>
+<div class="qa"><div class="q">Isian: let hasil =</div><span class="a">Number(a) + Number(b);</span></div>
+<div class="qa"><div class="q">Hasil program</div><span class="a">30</span></div>
+<div class="run"><button id="r3">Jalankan kode</button></div>
+<div class="out" id="o3" aria-live="polite">Tekan “Jalankan kode”.</div>
+</section>
+
+<section>
+<h2><i>4</i>Program kasir sederhana</h2>
+<pre><span class="k">let</span> harga = Number(prompt(<span class="s">"Masukkan harga: "</span>));
+<span class="k">let</span> jumlah = Number(prompt(<span class="s">"Masukkan jumlah: "</span>));
+<span class="k">let</span> total = harga * jumlah;
+console.log(<span class="s">"Total belanja = "</span> + total);</pre>
+<div class="tw"><table>
+<tr><th>Input uji</th><th>Nilai</th></tr>
+<tr><td>Harga</td><td>Rp 15.000</td></tr>
+<tr><td>Jumlah</td><td>3</td></tr>
+<tr><td>Total seharusnya</td><td class="ok">Rp 45.000</td></tr>
+<tr><td>Total program</td><td class="ok">Rp 45.000</td></tr>
+</table></div>
+<p class="note">Coba sendiri dengan angka lain:</p>
+<div class="run">
+<label>Harga<input id="h" type="number" value="15000" inputmode="numeric"></label>
+<label>Jumlah<input id="j" type="number" value="3" inputmode="numeric"></label>
+<button id="r4">Hitung total</button>
+</div>
+<div class="out" id="o4" aria-live="polite">Total belanja = 45000</div>
+</section>
+
+<section>
+<h2><i>5</i>Tantangan: program hitung nilai</h2>
+<h3>Algoritma saya</h3>
+<ol class="al">
+<li>Minta input nilai tugas, UTS, dan UAS dengan <code>prompt()</code>.</li>
+<li>Ubah ketiga input menjadi Number dengan <code>Number()</code>.</li>
+<li>Hitung rata-rata dengan rumus (tugas + UTS + UAS) / 3.</li>
+<li>Tampilkan hasil rata-rata dengan <code>console.log()</code>.</li>
+</ol>
+<pre><span class="k">let</span> tugas = Number(prompt(<span class="s">"Nilai tugas: "</span>));
+<span class="k">let</span> uts = Number(prompt(<span class="s">"Nilai UTS: "</span>));
+<span class="k">let</span> uas = Number(prompt(<span class="s">"Nilai UAS: "</span>));
+<span class="k">let</span> rata = (tugas + uts + uas) / <span class="n">3</span>;
+console.log(<span class="s">"Rata-rata = "</span> + rata);</pre>
+<div class="run">
+<label>Tugas<input id="nt" type="number" value="80"></label>
+<label>UTS<input id="nu" type="number" value="85"></label>
+<label>UAS<input id="na" type="number" value="90"></label>
+<button id="r5">Hitung rata-rata</button>
+</div>
+<div class="out" id="o5" aria-live="polite">Rata-rata = 85</div>
+</section>
+
+<section>
+<h2>H. Think — Pair — Share</h2>
+<div class="qa"><div class="q">Mengapa prompt() perlu dikonversi jika hasilnya ingin dihitung?</div><p class="a">Karena prompt() selalu menghasilkan String. Tanpa konversi, operator + akan menggabungkan teks, bukan menjumlahkan angka.</p></div>
+<div class="qa"><div class="q">Apa perbedaan "10" dengan 10?</div><p class="a">"10" adalah String (teks), sedangkan 10 adalah Number (angka) yang bisa dihitung.</p></div>
+<div class="qa"><div class="q">Apa yang terjadi jika lupa Number()?</div><p class="a">Hasil perhitungan salah. Contohnya "10" + "20" menjadi "1020", bukan 30.</p></div>
+<div class="qa"><div class="q">Pair: bandingkan jawaban dengan teman</div><p class="a">Intinya sama, hanya susunan kalimat yang berbeda karena setiap orang memakai kata-kata sendiri.</p></div>
+<div class="qa"><div class="q">Share: temuan penting untuk kelas</div><p class="a">Hasil prompt() selalu String, jadi bungkus dengan Number() sebelum menghitung.</p></div>
+</section>
+
+<section>
+<h2>I. Refleksi 3–2–1</h2>
+<div class="grid2">
+<div><h3>3 hal yang saya pahami</h3><ol><li>String dan Number berbeda tipe.</li><li>prompt() menghasilkan String.</li><li>Number() mengubah teks angka menjadi angka.</li></ol></div>
+<div><h3>2 hal yang masih membingungkan</h3><ol><li>Hasil Number() jika input berisi huruf (NaN).</li><li>Kapan memakai String() dalam program nyata.</li></ol></div>
+<div><h3>1 hal yang ingin saya coba</h3><p>Membuat kalkulator sederhana dengan empat operator.</p></div>
+</div>
+</section>
+
+<section>
+<h2>J. Penilaian diri</h2>
+<div class="tw"><table>
+<tr><th>Pernyataan</th><th>Ya</th><th>Belum</th></tr>
+<tr><td>Saya dapat membedakan String dan Number.</td><td class="chk">✔</td><td>☐</td></tr>
+<tr><td>Saya memahami prompt() menghasilkan String.</td><td class="chk">✔</td><td>☐</td></tr>
+<tr><td>Saya dapat menggunakan Number().</td><td class="chk">✔</td><td>☐</td></tr>
+<tr><td>Saya dapat menggunakan String().</td><td class="chk">✔</td><td>☐</td></tr>
+<tr><td>Saya dapat menemukan kesalahan tipe data.</td><td class="chk">✔</td><td>☐</td></tr>
+<tr><td>Saya dapat membuat program input dan hitung sederhana.</td><td class="chk">✔</td><td>☐</td></tr>
+</table></div>
+</section>
+
+<section>
+<h2>K. Rubrik penilaian praktik</h2>
+<div class="tw"><table>
+<tr><th>Aspek</th><th>4 — Sangat baik</th><th>3 — Baik</th><th>2 — Cukup</th><th>1 — Perlu bimbingan</th></tr>
+<tr><td>Tipe data</td><td>Menjelaskan dan memberi contoh</td><td>Membedakan String/Number</td><td>Masih ada kekeliruan</td><td>Belum memahami</td></tr>
+<tr><td>Konversi</td><td>Tepat dan mandiri</td><td>Benar dengan sedikit arahan</td><td>Beberapa kesalahan</td><td>Belum mampu</td></tr>
+<tr><td>Program</td><td>Berjalan benar dan rapi</td><td>Sedikit kesalahan</td><td>Berjalan sebagian</td><td>Belum berjalan</td></tr>
+<tr><td>Pemecahan masalah</td><td>Menemukan dan memperbaiki error</td><td>Mampu dengan sedikit bantuan</td><td>Perlu banyak bantuan</td><td>Belum mampu</td></tr>
+</table></div>
+<p class="note">Catatan guru: ______________________________________________</p>
+</section>
+<footer>LKPD dikerjakan oleh Najril · SMKN 1 Garut</footer>
+</main>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+$("r1").onclick=function(){var a="10",b="20";$("o1").textContent=a+b};
+$("r2").onclick=function(){var nama="Asep",umur=16;$("o2").textContent=typeof nama+"\n"+typeof umur};
+$("r3").onclick=function(){var a="10",b="20";$("o3").textContent=String(Number(a)+Number(b))};
+$("r4").onclick=function(){var t=Number($("h").value)*Number($("j").value);$("o4").textContent="Total belanja = "+t};
+$("r5").onclick=function(){var r=(Number($("nt").value)+Number($("nu").value)+Number($("na").value))/3;$("o5").textContent="Rata-rata = "+r};
+})();
+</script>
+</body>
+</html>
